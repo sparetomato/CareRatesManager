@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Postcodes";
+}
+
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+<h2>Postcodes</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Postcode
+            </th>
+            <th>
+                Zone
+            </th>
+            <th>
+                Rural / Urban
+            </th>
+            <th>
+                Rate
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ViewBag.OnePageOfPostcodes)
+        {
+            <tr>
+                <td>
+                    @item.Postcode
+                </td>
+                <td>
+                    @item.Zone
+                </td>
+                <td>
+                    @item.RuralUrban
+                </td>
+                <td>
+                    @item.Rate
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@X.PagedList.Mvc.Core.HtmlHelper.PagedListPager(Html, (IPagedList)ViewBag.OnePageOfPostcodes, page => Url.Action("Index", new { page }))

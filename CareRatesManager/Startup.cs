@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using CareRatesManager.Models;
+using CareRatesManager.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CareRatesManager
 {
@@ -31,6 +34,8 @@ namespace CareRatesManager
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<PostcodeContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -56,7 +61,7 @@ namespace CareRatesManager
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{postcode?}");
             });
         }
     }

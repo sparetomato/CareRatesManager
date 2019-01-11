@@ -1,0 +1,36 @@
+﻿@model CareRatesManager.Models.PostcodeModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Postcode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RuralUrban)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RuralUrban)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
